@@ -8,9 +8,11 @@
 
 选用Windows应用商店中的Ubuntu18.04LTS
 
-![image-20220329213106397](https://gitee.com/HRainbow/daily-study/raw/master/img/202203292131462.png)
+![202203292131462](img/202203292131462.png)
 
----
+下载内存泄漏查看工具valgrind
+
+![image-20220329214530210](img/image-20220329214530210.png)
 
 ## 2022-03-29
 
