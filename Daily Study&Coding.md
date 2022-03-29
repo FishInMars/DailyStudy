@@ -8,6 +8,20 @@
 
 #### ==Q1.Med [2024. 考试的最大困扰度](https://leetcode-cn.com/problems/maximize-the-confusion-of-an-exam)==
 
+>一位老师正在出一场由 n 道判断题构成的考试，每道题的答案为 true （用 'T' 表示）或者 false （用 'F' 表示）。老师想增加学生对自己做出答案的不确定性，方法是 最大化 有 连续相同 结果的题数。（也就是连续出现 true 或者连续出现 false）。
+>
+>给你一个字符串 answerKey ，其中 answerKey[i] 是第 i 个问题的正确结果。除此以外，还给你一个整数 k ，表示你能进行以下操作的最多次数：
+>
+>每次操作中，将问题的正确答案改为 'T' 或者 'F' （也就是将 answerKey[i] 改为 'T' 或者 'F' ）。
+>请你返回在不超过 k 次操作的情况下，最大 连续 'T' 或者 'F' 的数目。
+>
+>提示：
+>
+>n == answerKey.length
+>1 <= n <= 5 * 104
+>answerKey[i] 要么是 'T' ，要么是 'F'
+>1 <= k <= n
+
 只要求最大连续指定字符的数目时，本题和「1004. 最大连续1的个数 III」完全一致。
 
 在指定字符的情况下，我们可以计算其最大连续数目。具体地，我们使用滑动窗口的方法，从左到右枚举右端点，维护区间中另一种字符的数量为 sum，当 sum 超过 k，我们需要让左端点右移，直到 sum≤k。移动过程中，我们记录滑动窗口的最大长度，即为指定字符的最大连续数目。
@@ -43,7 +57,11 @@ public:
 
 >找出数组中重复的数字。在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
 >
->限制：2 <= n <= 100000
+>限制：
+>
+>2 <= n <= 100000
+>
+>
 
 1. 这道题初看是个很简单的题，第一眼就是先nlogn排序一下，然后从下标0开始遍历到n-1，每次都比较n和n+1是否相同，如果有则返回nums[n]，空间复杂度为O(1)，时间复杂度为O(nlogn)，代码块如下。
 
@@ -99,7 +117,36 @@ public:
     }
 ```
 
+#### Q3.[剑指 Offer 04. 二维数组中的查找](https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof)
 
+> 在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+>
+> 限制：
+>
+> 0 <= n <= 1000
+> 0 <= m <= 1000
+
+```c++
+class Solution {
+public:
+    bool findNumberIn2DArray(vector<vector<int>>& matrix, int target) {
+        int i = matrix.size() - 1, j = 0;
+        while (i >= 0 && j < matrix[0].size()) {
+            if (matrix[i][j] > target) i--;
+            else if (matrix[i][j] < target) j++;
+            else return true;
+        }
+        return false;
+    }
+};
+```
+
+- 从矩阵左下角遍历到右上角，并与目标值对比
+- 当 matrix[i][j] > target 时： 行下标向上移动一行（i--），即消去矩阵第 i 行数字；
+- 当 matrix[i][j] < target 时： 列下标向右移动一列（j++），即消去矩阵第 j 列数字；
+- 当 matrix[i][j] == target 时： 返回 true。
+- 如果越界，则返回 false
 
 ### Studing
 
+摸鱼~
