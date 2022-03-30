@@ -15,7 +15,7 @@ git commit -m "$info"
 echo;
  
 echo "Commit the changes to the remote git server"
-git push daily master
+git push origin master
 echo;
  
 echo "Batch execution complete!"
