@@ -19,3 +19,5 @@ echo;
  
 echo "Batch execution complete!"
 echo;
+
+pause

@@ -1,6 +1,101 @@
+[TOC]
+
 # Daily Study&Coding
 
 ---
+
+## FP - Labs
+
+### Lab1 
+
+#### Step1.环境准备
+
+```
+sudo apt install ~~~
+```
+
+
+
+![image-20220330191355243](img/image-20220330191355243.png)
+
+在安装好环境后编写HelloWorld进行测试
+
+![image-20220330191904000](img/image-20220330191904000.png)
+
+#### Step2. Lab1
+
+##### Q1
+
+![image-20220330192015714](img/image-20220330192015714.png)
+
+左侧列内容
+
+![image-20220330192550188](img/image-20220330192550188.png)
+
+右侧列内容
+
+![image-20220330192733983](img/image-20220330192733983.png)
+
+##### Q2
+
+![image-20220330194411741](img/image-20220330194411741.png)
+
+```
+fun multx ([ ], a) = a
+  | multx (x :: L, a) = multx (L, x * a);
+
+fun Multx ([ ], a) = a
+  | Multx (r :: R, a) = Mult (R) * mult' (r, a);
+```
+
+##### Q3
+
+![image-20220330194603551](img/image-20220330194603551.png)
+
+```
+fun Mult [ ] = 1 
+  | Mult (r :: R) = mult(r) * Mult(R);
+```
+
+##### Q4
+
+![image-20220330194940061](img/image-20220330194940061.png)
+
+```
+fun multx ([ ], a) = a
+  | multx (x :: L, a) = multx (L, x * a);
+
+fun Multx ([ ], a) = a
+  | Multx (r :: R, a) = Mult (R) * mult' (r, a);
+```
+
+##### Q5
+
+![image-20220330194950407](img/image-20220330194950407.png)
+
+```
+fun double(0 : int) : int = 0
+  | double n = 2 + double(n - 1);
+
+fun square(0 : int) : int = 0
+  | square(x) = square(x - 1) + double(x - 1) + 1;
+```
+
+##### Q6
+
+![image-20220330203130110](img/image-20220330203130110.png)
+
+```
+fun zip([]:string list,[]:int list):(string*int)list=[]
+ | zip ([]:string list,L:int list):(string*int)list=[]
+ | zip (L:string list,[]:int list):(string*int)list=[]
+ | zip (str::SL,num::NL)=(str,num)::zip(SL,NL);
+
+fun unzip([]:(string*int)list):((string list)*(int list))=([],[])
+ | unzip ((str,num)::L)=let val (sl,nl)=unzip(L) in (str::sl,num::nl) end;
+```
+
+
 
 ## CSAPP - Cache Lab
 
@@ -501,7 +596,7 @@ if (M == 32)
 
 ## 2022-03-29
 
-### Coding
+### Code
 
 #### Q1.Med [2024. 考试的最大困扰度](https://leetcode-cn.com/problems/maximize-the-confusion-of-an-exam)
 
@@ -652,7 +747,7 @@ public:
 - 当 matrix[i] [j] == target 时： 返回 true。
 - 如果越界，则返回 false
 
-### Studing
+### Study
 
 #### 系统结构作业（第三次）
 
@@ -686,7 +781,7 @@ public Object put(Object Key,Object value)方法用来将元素添加到map中�
 
 ## 2022-03-30
 
-### Coding
+### Code
 
 #### Q1. Hard [1606. 找到处理最多请求的服务器](https://leetcode-cn.com/problems/find-servers-that-handled-most-number-of-requests)（寄）
 
@@ -839,3 +934,101 @@ public:
 };
 ```
 
+### Study
+
+#### FP - 函数式编程
+
+##### ML标准类型
+
+| 类型                  | 实例                          |
+| --------------------- | ----------------------------- |
+| 基础类型(basic types) | unit, int, real, bool, string |
+| 表(lists)             | int list, (int -> int) list   |
+| 元组(tuples)          | int * int, int * int * real   |
+| 函数(functions)       | int -> int, real -> int * int |
+
+###### 基础类型(basic types) 
+
+- 单元(unit) 只包含一个元素，用空的括号表示( ) : unit
+- 整型(int) 负号用“~”表示
+- 浮点型(real)
+- 布尔型(bool) true, false
+- 字符串型(string) 双引号间的字符序列
+
+###### 表(lists) 
+
+- 包含相同类型元素的有限序列
+- 表中元素用“,”分隔，整个表用[ ]括起来
+- 元素可以重复出现，其顺序有意义
+- 表的类型取决于表中元素类型（可以为任意类型，但需具有相同的类型）
+- 表可以嵌套
+- 表的基本函数：
+  :: (追加元素), @ (连接表), null (空表测试), hd(返回表头元素), 
+  tl(返回非空表的表尾), length(返回表长)
+
+> nil = [ ] (空表) [ ] : int list, [ ] : bool list, ......
+> [1, 3, 2, 1, 21+21] : int list
+> [true, false, true] : bool list
+> [[1],[2, 3]] : (int list) list
+> 1::[2, 3] = [1, 2, 3]
+> [1, 2]@[3, 4] = [1, 2, 3, 4]
+
+###### 元组(tuples) 
+
+- 包含任意类型数据元素的定长序列
+- 类型表达式：每个元素的类型用*间隔并排列在一起如： int * int, int * int * real
+- 圆括号中用逗号分隔的数据元素，允许嵌套如: (“张三”, “男”, 19, 1.75)
+
+> [((“赵”,”子昂”)，21, 1.81), ((“张”, “文艺”), 20, 1.69)]
+> ((string * string) * int * real) list
+
+###### 记录(record) 
+
+- 类似C中的结构类型，可以包含不同类型的元素
+- 每个元素都有一个名字
+- 记录的值和类型的写法都用{ }括起来如： {First_name=“赵”, Last_name=“子昂”}
+
+###### 函数(functions) 
+
+- 以一定的规则将定义域上的值映射到值域上去
+- 类型由它的定义域类型和值域类型共同描述
+- ->表示定义域到值域的映射
+- ​        fn: <定义域类型> -> <值域类型> 如: fun add(x, y) = x + y;
+
+###### 元组、列表、记录的异同点
+
+| 方面     | 元组     | 列表     | 记录     |
+| -------- | -------- | -------- | -------- |
+| 符号     | ( )      | [ ]      | { }      |
+| 元素类型 | 可以不同 | 必须相同 | 可以不同 |
+| 长度     | 定长     | 变长     | 变长     |
+
+##### 声明(Declarations)
+
+赋予某个对象一个名字，包括值、类型、签名、结构和函子
+
+###### 函数的声明：
+
+- fun <函数名> (<形式参数>) : <结果类型> = <函数体>
+- 例：fun divmod(x:int, y:int) : int*int = (x div y, x mod y)
+
+###### 值的声明：
+
+- val pi = 3.1415；
+- val (q:int, r:int) = divmod(42, 5)；
+- 采用静态绑定方式——重新声明不会损坏系统、库或程序
+
+##### 模式匹配
+
+###### 模式匹配举例：eval
+
+>**fun** eval ([ ]:int list):int = 0
+>
+>| eval (d::L) = d + 10 * (eval L);
+
+eval [2,4] =>* [d:2, L:[4]] (d + 10 * (eval L))
+				=>* 2 + 10 * (eval [4])
+				=>* 2 + 10 * (4 + 10 * (eval [ ]))
+				=>* 2 + 10 * (4 + 10 * 0)
+				=>* 2 + 10 * 4
+				=>* 42
