@@ -4,15 +4,26 @@
 
 ## CSAPP - Cache Lab
 
-### Step1 - Preparing the System
+### Step1 - Preparing the System(2022-03-29)
 
 选用Windows应用商店中的Ubuntu18.04LTS
 
-![202203292131462](img/202203292131462.png)
+![image-20220329225124549](img/image-20220329225124549.png)
 
 下载内存泄漏查看工具valgrind
 
 ![image-20220329214530210](img/image-20220329214530210.png)
+
+使用svn下载CSAPP-CacheLab
+![image-20220329225100268](img/image-20220329225100268.png)
+
+根据README，使用make进行初始化操作
+
+![image-20220329225525977](img/image-20220329225525977.png)
+
+### Step2 - Lab1 Cache Simulator
+
+TBD
 
 ## 2022-03-29
 
